@@ -42,6 +42,7 @@ $(document).on('turbolinks:load', function(){
     
     if(error) {
       //If there are card errors, don't send to Stripe.
+      //and re-enable the Sign Up button
       submitBtn.prop('disabled', false).val("Sign Up");
     }  else {
       //Send the card info to Stripe.
@@ -52,9 +53,6 @@ $(document).on('turbolinks:load', function(){
         exp_year: expYear
       }, stripeResponseHandler);      
     }
-    
-
-    
     return false;
   });
   //Stripe will return a card token.
@@ -66,6 +64,5 @@ $(document).on('turbolinks:load', function(){
     //Submit form to our Rails app.
     theForm.get(0).submit();
   }
- 
 });
 

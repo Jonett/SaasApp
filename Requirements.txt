@@ -19,8 +19,8 @@ token to stripe server and stripe will create a subscribtion and send back custo
 Rails should save customer token and user information to our database. -- Done
 
 User Profiles
-* Each user should have one profile
-* User should see link to new profile form upun signing up
-* User should be able to create and view their user profile
-* User profile should have a profile picture
-* User should be able to view all user profiles
+* Each user should have one profile -- Done
+* User should see link to new profile form upun signing up -- Done
+* User should be able to create and view their user profile -- Done
+* User profile should have a profile picture -- Done
+* User should be able to view all user profiles -- Done

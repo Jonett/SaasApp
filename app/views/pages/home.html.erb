@@ -1,6 +1,6 @@
 <div class="home-callout text-center container-fluid">
-  <h1>Welcome to DevMatch.</h1>
-  <h3>A membership site where entrepreneurs can meet developers.</h3>
+  <h1>Tervetuloa DuuniKelloon</h1>
+  <h3>Ilmaiseen työnajanseuranta ja raportoimis työkaluun</h3>
 </div>
 
 <div class="container home-signup-links">
@@ -8,32 +8,81 @@
     <% if user_signed_in? %>
       <div class="col-md-6">
         <div class="well">
-          <h2 class="text-center">Your Profile</h2>
+          <h2 class="text-center">Profiili</h2>
           <% if current_user.profile %>
-            <%= link_to "Edit your profile", edit_user_profile_path( user_id: current_user.id ), class: 'btn btn-default btn-lg btn-block' %>
-            <%= link_to "View your profile", user_path( current_user.id ), class: 'btn btn-default btn-lg btn-block' %>
+            <%= link_to "Muokkaa Profiilia", edit_user_profile_path( user_id: current_user.id ), class: 'btn btn-default btn-lg btn-block' %>
+            <%= link_to "Näytä Profiili", user_path( current_user.id ), class: 'btn btn-default btn-lg btn-block' %>
           <% else %>
             <p>Create your profile so that you can share your information with the community</p>
-            <%= link_to "Create your profile", new_user_profile_path( user_id: current_user.id ), class: 'btn btn-default btn-lg btn-block' %>
+            <%= link_to "Luo Profiili", new_user_profile_path( user_id: current_user.id ), class: 'btn btn-default btn-lg btn-block' %>
           <% end %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="well">
-          <h2 class="text-center">The Community</h2>
-          <p>Visit the community to meet other developers, entrepreneurs and investors!</p>
-          <%= link_to "Visit the community", users_path, class: 'btn btn-default btn-lg btn-block' %>
+          <h2 class="text-center">DuuniKello</h2>
+          <% if !current_user.profile %>
+            <p class="text-center">Luo Profiili ja ota DuuniKellon ominaisuudet käyttöön!</p>
+            
+            <% if true %> <!-- Dummy, no functions -->
+              <%= link_to "Aloita Työpäivä", user_path( current_user.id ), class: 'btn btn-default btn-lg btn-block', :disabled => true %>
+            <% else %><!-- Dummy, no functions -->
+              <%= link_to "Lopeta Työpäivä", user_path( current_user.id ), class: 'btn btn-default btn-lg btn-block', :disabled => true %>
+              <br/>
+              <%= link_to "Aloita Tauko", user_path( current_user.id ), class: 'btn btn-default btn-lg btn-block', :disabled => true %>
+              <br/>
+            <% end %>
+            <br/>
+            <%= link_to "Raportointi", user_path( current_user.id ), class: 'btn btn-default btn-lg btn-block', :disabled => true %>
+          <% else %>
+            <br/>
+            <% if true %> <!-- Wamt to show possibility to only start counting hours if client has not yet done so -->
+              <%= link_to "Aloita Työpäivä", '#', class: 'btn btn-default btn-lg btn-block', :disabled => false %>
+            <% else %><!-- Only show possibility to stop the timer if client has started it -->
+              <%= link_to "Lopeta Työpäivä", '#', class: 'btn btn-default btn-lg btn-block', :disabled => false %>
+              <br/>
+              <%= link_to "Aloita Tauko", '#', class: 'btn btn-default btn-lg btn-block', :disabled => false %>
+              <br/>
+            <% end %>
+            <br/>
+            <%= link_to "Raportointi", '#', class: 'btn btn-default btn-lg btn-block', :disabled => false %>
+            
+            
+          <% end %>
+          
         </div>
       </div>
     <% else %>
-      <div class="col-md-6">
-        <div class="well">
-          <h2 class="text-center">Basic Membership</h2>
-          <h4>Sign up for free and get basic access to the community.</h4>
+      <div class="col-md-12">
+        <div id="benefits" class="well">
+          <h2 class="text-center">DuuniKello</h2>
+          <h4 class="text-center">Mikä se on?</h4>
+          <h5 class="text-center">DuuniKello on <span style="font-weight: 800">ilmainen</span> työkalu työantajalle sekä, -tekijälle työtuntien seurantaan ja raportoimiseen.</h5>
           <br/>
-          <%= link_to "Sign up with Basic", new_user_registration_path(plan: @basic_plan.id), class: 'btn btn-primary btn-lg btn-block' %>
+          <h4 class="text-center">DuuniKello tarjoaa mm.</h5>
+          <h4>
+            <ul>
+              <li>Ilmaisen työajanseurannan.</li>
+              <li>Mahdollisuuden saada kirjanpitoon tai laskutukseen vaadittavan materiaalin CSV tai PDF muodossa.</li>
+              <li>Suoran yhteyden työntekijän ja työnantajan välille.</li>
+              <li>Mahdollisuuden työvaihe ohjeistukseen.</li>
+              <li>...</li>
+              <li>...</li>
+            </ul>
+          </h5>
+          
+          
         </div>
       </div>
+      <div class="col-md-12">
+        <div class="well">
+          <h2 class="text-center">Ilmainen Jäsenyys</h2>
+          <h4 class="text-center">Rekisteröidy ilmaiseksi ja saa käyttöösi DuuniKellon ominaisuudet!</h4>
+          <br/>
+          <%= link_to "Rekisteröidy DuuniKelloon", new_user_registration_path(plan: @basic_plan.id), class: 'btn btn-primary btn-lg btn-block' %>
+        </div>
+      </div>
+      <!--
       <div class="col-md-6">
         <div class="well">
           <h2 class="text-center">Pro Membership</h2>
@@ -41,6 +90,9 @@
           <%= link_to "Sign up with Pro", new_user_registration_path(plan: @pro_plan.id), class: 'btn btn-success btn-lg btn-block' %>
         </div>
       </div>
+      -->
     <% end %>
   </div>
 </div>
+
+ <% link_to "Visit the community", users_path, class: 'btn btn-default btn-lg btn-block' %> 

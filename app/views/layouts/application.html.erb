@@ -24,25 +24,30 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to root_path, class: "navbar-brand" do %>
-          <i class="fa fa-group"></i>
-          DevMatch
+          <% if !user_signed_in? %> <!-- needs Function for showing different stages if clock counter is enabled or not -->
+            <i class="fa fa-hourglass-o"></i>
+          <% else %>
+            <i class="fa fa-hourglass-2"></i>
+          <% end %>
+          DuuniKello
         <% end %>
       </div>
       <div class="collapse navbar-collapse" id="main-nav-collapse">
         <div class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: 'btn btn-danger navbar-btn' %>
+            <%= link_to "Kirjaudu Ulos", destroy_user_session_path, method: :delete, class: 'btn btn-danger navbar-btn' %>
           <% else %>
-            <%= link_to "Log In", new_user_session_path , class: 'btn btn-default navbar-btn' %>
+            <%= link_to "Kirjaudu Sisään", new_user_session_path , class: 'btn btn-success navbar-btn' %>
           <% end %>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><%= link_to "Community", users_path %></li>
-            <li><%= link_to "My Account", edit_user_registration_path %></li>
+            <!-- Place Holder for Admin Panel -->
+            
+            <li><%= link_to "Minun Kello", edit_user_registration_path %></li>
           <% end %>
-          <li><%= link_to "About", about_path %></li>
-          <li><%= link_to "Contact Us", new_contact_path %></li>
+          <li><%= link_to "Mikä on DuuniKello?", about_path %></li>
+          <li><%= link_to "Ota Yhteyttä", new_contact_path %></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div>
@@ -56,3 +61,4 @@
 
 </body>
 </html>
+<!-- For Admin Panel<li><<%= link_to "PH", users_path %></li> -->
